@@ -1,6 +1,14 @@
 .ddev/*
 !.ddev/config.yaml
 !.ddev/php/custom-php.ini
+
 .DS_Store
+.env
+
 package-lock.json
 composer.lock
+
+.idea
+
+node_modules
+vendor
