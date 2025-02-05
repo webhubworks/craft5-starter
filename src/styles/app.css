@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "./generic/_fonts.css";
 
+@source "../../templates/**/*.twig";
+
 @theme {
 
 }
