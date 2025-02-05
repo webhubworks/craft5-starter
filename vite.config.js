@@ -54,9 +54,9 @@ export default defineConfig(({ command, mode }) => {
         },
         server: {
             host: '0.0.0.0',
-            port: 5137,
+            port: 5173,
             strictPort: true,
-            origin: `${primarySiteUrl}:3000`,
+            origin: `${primarySiteUrl}:5173`,
             cors: {
                 origin: /^https?:\/\/(?:[a-zA-Z0-9-]+\.)+ddev\.site(?::\d+)?$/,
             },
