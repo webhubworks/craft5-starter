@@ -1,0 +1,51 @@
+- pipeline: Deploy to Production
+  events:
+    - type: PUSH
+      refs:
+        - refs/heads/main
+  fail_on_prepare_env_warning: true
+  targets:
+    - type: SSH
+      id: Staging__213_239_207_42
+      host: 213.239.207.42
+      path: /var/www/clients/client9199/web17153/web/chargemaker
+      auth:
+        method: ASSETS_KEY
+        username: c125652chargemaker_stage
+        asset: id_project
+    - type: SSH
+      id: Production__195_201_56_206
+      host: 195.201.56.206
+      path: /var/www/clients/client9199/web16577/web/chargemaker
+      auth:
+        method: ASSETS_KEY
+        username: c125652chargemaker
+        asset: id_project
+  actions:
+    - action: Install & Build
+      type: SSH_COMMAND
+      commands:
+        - php craft db/backup
+        - php craft off
+        - ""
+        - git reset --hard
+        - git pull origin main
+        - ""
+        - composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+        - ""
+        - php craft migrate/all --no-content --interactive=0
+        - php craft project-config/apply
+        - php craft migrate --track=content --interactive=0
+        - ""
+        - npm install
+        - npm run build
+        - ""
+        - php craft on
+      targets:
+        - Production__195_201_56_206
+    - action: Send notification
+      type: SLACK
+      content: $BUDDY_PIPELINE_NAME executed successfully 🚀
+      blocks: "[\n\t{\n\t\t\"type\": \"section\",\n\t\t\"fields\": [\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Successful run:* <$BUDDY_RUN_URL|Execution #$BUDDY_RUN_ID $BUDDY_RUN_COMMENT>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Ref:* $BUDDY_PIPELINE_REFS\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"\n\t\t\t}\n\t\t]\n\t}\n]"
+      channel: chargemaker
+      integration: Slack

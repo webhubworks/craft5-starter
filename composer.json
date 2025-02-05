@@ -1,0 +1,38 @@
+{
+  "name": "webhubworks/craft5-starter",
+  "description": "A Craft 5 and DDEV based starter project",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "project"
+  ],
+  "license": "0BSD",
+  "homepage": "https://craftcms.com/",
+  "type": "project",
+  "support": {
+    "email": "support@craftcms.com",
+    "issues": "https://github.com/craftcms/cms/issues",
+    "forum": "https://craftcms.stackexchange.com/",
+    "source": "https://github.com/craftcms/cms",
+    "docs": "https://craftcms.com/docs",
+    "rss": "https://craftcms.com/changelog.rss"
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true,
+      "treeware/plant": false
+    }
+  },
+  "scripts": {
+    "post-create-project-cmd": [
+      "@php -r \"file_exists('.env') || copy('.env.example.dev', '.env');\"",
+      "@php -r \"unlink('.gitignore');\"",
+      "@php -r \"rename('.gitignore.default', '.gitignore');\"",
+      "@php -r \"unlink('composer.json');\"",
+      "@php -r \"rename('composer.json.default', 'composer.json');\"",
+      "@php -r \"@unlink('README.md');\""
+    ]
+  }
+}
