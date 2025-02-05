@@ -1,4 +1,6 @@
 {
+  "name": "webhubworks/craft5-starter",
+  "version": "1.0.0",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {

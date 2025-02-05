@@ -23,6 +23,12 @@ hooks:
   post-start:
     - exec: composer install
     - exec: npm install
+    - exec: |
+        if ! ./craft install/check; then
+          echo "⚠️  Craft is not installed. Running setup commands..."
+          ./craft setup/app-id
+          ./craft setup/security-key
+        fi
 
 # Key features of DDEV's config.yaml:
 

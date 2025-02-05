@@ -31,8 +31,11 @@
       "@php -r \"unlink('.gitignore');\"",
       "@php -r \"rename('.gitignore.default', '.gitignore');\"",
       "@php -r \"unlink('composer.json');\"",
+      "@php -r \"unlink('composer.lock');\"",
       "@php -r \"rename('composer.json.default', 'composer.json');\"",
-      "@php -r \"@unlink('README.md');\""
+      "@php -r \"@unlink('README.md');\"",
+      "bash init.sh",
+      "@php -r \"unlink('init.sh');\""
     ]
   }
 }
