@@ -50,6 +50,7 @@ export default defineConfig(({ command, mode }) => {
                     __dirname,
                     'src/scripts/components'
                 ),
+                vue: 'vue/dist/vue.esm-bundler.js',
             },
         },
         server: {
