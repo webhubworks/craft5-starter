@@ -1,0 +1,6 @@
+{% if craft.app.request.csrfToken | length %}
+    <script type="text/javascript">
+        window.csrfTokenName = "{{ craft.app.config.general.csrfTokenName|e('js') }}";
+        window.csrfToken = "{{ craft.app.request.csrfToken|e('js') }}";
+    </script>
+{% endif %}

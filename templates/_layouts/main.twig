@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+webhub.de
+-->
+<html lang="{{ craft.app.language }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+    <link rel="home" href="{{ siteUrl }}"/>
+    {% hook 'seo' %}
+    {{ craft.vite.script('src/scripts/app.js', false) }}
+</head>
+
+<body {{ craft.app.config.general.devMode ? 'data-dev-mode="true"' }}>
+
+    <div id="app">
+
+        {% include '_layouts/partials/header.twig' ignore missing %}
+
+        <main>
+            {% block content %}
+                <p class="text-center">If you see this, no block named content was provided.</p>
+            {% endblock %}
+
+        </main>
+
+        {% include '_layouts/partials/footer.twig' ignore missing %}
+
+    </div>
+
+    {# Craft CSRF token #}
+    {% include '_inline-scripts/_craft-csrf-token' %}
+
+</body>
+</html>
