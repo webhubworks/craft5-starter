@@ -4,6 +4,8 @@ GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# Rename project
+
 PROJECT_NAME=$(basename "$PWD")
 
 echo -e "${YELLOW}Enter project name:${NC} (default: $PROJECT_NAME)"
