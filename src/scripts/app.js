@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import '@styles/app.pcss'
+import '@styles/app.css'
 
 const app = createApp({
     components: {},

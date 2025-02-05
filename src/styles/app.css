@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./generic/_fonts.pcss";
+@import "./generic/_fonts.css";
 
 @theme {
 
