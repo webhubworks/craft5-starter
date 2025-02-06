@@ -1,0 +1,42 @@
+A modern Craft CMS 5 project powered by DDEV.
+
+## Requirements
+
+Ensure you have the following installed before getting started:
+
+- [DDEV](https://ddev.com/) – A powerful local development environment
+
+## Getting Started
+
+Set up the project by running:
+
+```sh
+ddev start
+```
+
+This will automatically execute:
+
+- `ddev composer install` – Installs PHP dependencies
+- `ddev npm install` – Installs JavaScript dependencies
+
+### Running the Development Server
+
+To start the frontend build process, use:
+
+```sh
+ddev npm run dev
+```
+
+This will launch Vite for hot module reloading and efficient frontend development.
+
+## Extending the Project
+
+Leverage **Craft Generator** to quickly scaffold new components within the site module. For more details, refer to the [Craft Generator documentation](https://github.com/craftcms/generator/blob/2.x/README.md#system-component-generation).
+
+### Creating a New Component
+
+```sh
+ddev craft make <component> --module=site-module
+```
+
+Replace `<component>` with the desired component type (e.g., `model`, `controller`, `service`).

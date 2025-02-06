@@ -6,7 +6,7 @@ RED='\033[1;31m'
 NC='\033[0m' # No Color
 
 if ddev craft install/check; then
-  exit 1
+  exit 0
 fi
 
 echo -e "${YELLOW}⚠️ Craft is not installed. Running setup commands...${NC}"
@@ -14,13 +14,16 @@ echo -e "${YELLOW}⚠️ Craft is not installed. Running setup commands...${NC}"
 ddev craft setup/app-id
 ddev craft setup/security-key
 
+read -p "What is this site called? " SITE_NAME
+
+(echo "# ${SITE_NAME}\n"; cat README.md.default) > README.md
+rm -f README.md.default
+
 if ! command -v op 2>&1 >/dev/null; then
   echo -e "${RED}1Password CLI is not installed, cannot create an account${NC}"
-  ddev craft install/craft
+  ddev craft install/craft --site-name="${SITE_NAME}" --site-url="$PRIMARY_SITE_URL"
 else
-  read -p "What is this site called? " SITE_NAME
-
-  echo "Fetching metadata, this can take a few seconds..."
+    echo "Fetching metadata, this can take a few seconds..."
 
   USER_EMAIL=$(op user get --format=json --me | jq -r '.email')
   SITE_URL=$(ddev describe -j | jq -r '.raw | .primary_url')
