@@ -13,6 +13,7 @@ mv .gitignore.default .gitignore
 rm -f composer.json
 mv composer.json.default composer.json
 
+rm -f composer.lock
 rm -f README.md
 
 # Rename project
@@ -41,4 +42,5 @@ if [ -f ".ddev/config.yaml" ]; then
     sed -i.bak "s/^name: .*/name: $PROJECT_NAME/" .ddev/config.yaml && rm .ddev/config.yaml.bak
 fi
 
-echo -e "${GREEN}✔ Updated project name in composer.json, package.json, and .ddev/config.yaml.${NC}"
+echo -e "${GREEN}✔ Updated project name in composer.json, package.json, and .ddev/config.yaml.${NC}\n"
+echo -e "Run ${YELLOW}ddev start${NC} inside the project folder"
