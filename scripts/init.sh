@@ -4,6 +4,17 @@ GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# Cleanup starter
+[ -f .env ] || cp .env.example.dev .env
+
+rm -f .gitignore
+mv .gitignore.default .gitignore
+
+rm -f composer.json
+mv composer.json.default composer.json
+
+rm -f README.md
+
 # Rename project
 
 PROJECT_NAME=$(basename "$PWD")

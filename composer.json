@@ -27,15 +27,7 @@
   },
   "scripts": {
     "post-create-project-cmd": [
-      "@php -r \"file_exists('.env') || copy('.env.example.dev', '.env');\"",
-      "@php -r \"unlink('.gitignore');\"",
-      "@php -r \"rename('.gitignore.default', '.gitignore');\"",
-      "@php -r \"unlink('composer.json');\"",
-      "@php -r \"unlink('composer.lock');\"",
-      "@php -r \"rename('composer.json.default', 'composer.json');\"",
-      "@php -r \"@unlink('README.md');\"",
-      "bash init.sh",
-      "@php -r \"unlink('init.sh');\""
+      "bash ./scripts/init.sh"
     ]
   }
 }
