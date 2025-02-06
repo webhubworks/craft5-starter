@@ -35,7 +35,7 @@ return GeneralConfig::create()
     ->extraFileKinds([
         'vector' => [
             'label' => 'SVG',
-            'extension' => 'svg',
+            'extensions' => ['svg'],
         ]
     ])
 ;
