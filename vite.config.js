@@ -29,10 +29,8 @@ export default defineConfig(({ command, mode }) => {
                 input: {
                     app: 'src/scripts/app.js',
                 },
-                output: {
-                    sourcemap: true,
-                },
             },
+            sourcemap: true,
         },
         plugins: [
             tailwindcss(),
