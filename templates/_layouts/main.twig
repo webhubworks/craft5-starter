@@ -8,6 +8,8 @@ webhub.de
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
     <link rel="home" href="{{ siteUrl }}"/>
+    {# Preload fonts #}
+    {# <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Switzer-Variable.woff2"/> #}
     {% hook 'seo' %}
     {{ craft.vite.script('src/scripts/app.js', false) }}
 </head>

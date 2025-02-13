@@ -1,0 +1,18 @@
+/*
+@font-face {
+    font-family: 'Switzer';
+    src: url('/assets/fonts/Switzer-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Switzer Fallback';
+    src: local('Arial');
+    size-adjust: 100.27%;
+    ascent-override: 97.74%;
+    descent-override: 24.93%;
+    line-gap-override: 89.76%;
+}
+*/
