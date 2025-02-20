@@ -26,9 +26,9 @@ git pull origin "$BRANCH"
 
 $COMPOSER_BIN install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
-$PHP_BIN craft migrate/all --no-content --interactive=0
+$PHP_BIN craft migrate/all --no-content --interactive=0 --no-backup
 $PHP_BIN craft project-config/apply
-$PHP_BIN craft migrate --track=content --interactive=0
+$PHP_BIN craft migrate --track=content --interactive=0  --no-backup
 
 npm install
 npm run build
