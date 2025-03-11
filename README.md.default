@@ -40,3 +40,10 @@ ddev craft make <component> --module=site-module
 ```
 
 Replace `<component>` with the desired component type (e.g., `model`, `controller`, `service`).
+
+
+## Configuring Backups
+
+Enable backups and configure variables through `.env`, then create a cronjob that executes `./scripts/backup.sh`.
+
+Read more about its usage [here](scripts/backup/README.md).
