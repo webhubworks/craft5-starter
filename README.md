@@ -17,6 +17,7 @@ Before getting started, ensure you have the following installed:
 - [Composer](https://getcomposer.org/)
 - [DDEV](https://ddev.com/)
 - [1Password CLI](https://developer.1password.com/docs/cli/get-started/) (optional but recommended)
+- git
 
 ### Installing 1Password CLI (Optional)
 
