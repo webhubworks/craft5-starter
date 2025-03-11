@@ -1,3 +1,0 @@
-[submodule "scripts/backup"]
-	path = scripts/backup
-	url = https://github.com/webhubworks/simple-craft-backup

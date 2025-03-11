@@ -8,7 +8,6 @@ NC='\033[0m' # No Color
 [ -f .env ] || cp .env.example.dev .env
 
 rm -f .gitignore
-rm -f .gitmodules
 mv .gitignore.default .gitignore
 
 rm -f composer.json
