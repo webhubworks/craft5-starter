@@ -16,7 +16,7 @@ ddev craft setup/security-key
 
 read -p "What is this site called? " SITE_NAME
 
-(echo -e "# ${SITE_NAME}\n"; cat README.md.default) > README.md
+echo -e "# ${SITE_NAME}\n\n$(cat README.md.default)" > README.md
 rm -f README.md.default
 
 if ! command -v op 2>&1 >/dev/null; then
