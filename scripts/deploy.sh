@@ -40,10 +40,9 @@ if [[ -n ${FORGE_PHP_FPM+set} ]]; then
       echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
 fi
 
-# Uncomment for Panoptikum
-
-# git rev-parse --short HEAD > storage/.current-githash
-# git rev-parse HEAD > storage/.current-git-commit-sha
-# git tag | sort -V | tail -1 > storage/.current-gittag
-# git log -n 1 --pretty=%D HEAD > storage/.current-git-branch
-# $PHP_BIN craft _craft-panoptikum-cell/panoptikum/run
+# Panoptikum
+git rev-parse --short HEAD > storage/.current-githash
+git rev-parse HEAD > storage/.current-git-commit-sha
+git tag | sort -V | tail -1 > storage/.current-gittag
+git log -n 1 --pretty=%D HEAD > storage/.current-git-branch
+$PHP_BIN craft _craft-panoptikum-cell/panoptikum/run

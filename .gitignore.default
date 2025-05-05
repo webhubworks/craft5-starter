@@ -27,3 +27,4 @@ npm-debug.log
 .idea
 .project
 .settings
+auth.json
