@@ -41,6 +41,7 @@ else
   echo -e "${GREEN}✔ Generated a new 1Password item."
 
   ddev craft install/craft \
+    --interactive=0 \
     --email="${USER_EMAIL}" \
     --username="${USER_EMAIL}" \
     --password="${PASSWORD}" \
