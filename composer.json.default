@@ -40,6 +40,10 @@
       "type": "composer",
       "url": "https://composer.craftcms.com",
       "canonical": false
+    },
+    {
+      "type": "composer",
+      "url": "https://webhub.repo.repman.io"
     }
   ],
   "autoload": {
