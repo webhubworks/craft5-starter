@@ -60,3 +60,7 @@ ddev craft plugin/install cp-field-inspect
 echo "Updating Craft & plugins..."
 
 ddev craft update all --interactive=0 --minor-only
+
+echo "Launching PhpStorm..."
+
+open -a PhpStorm .
