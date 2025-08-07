@@ -16,7 +16,7 @@ export default defineConfig(({ command, mode }) => {
             ? env.PRIMARY_SITE_URL.slice(0, env.PRIMARY_SITE_URL.length - 1)
             : env.PRIMARY_SITE_URL
 
-    if (!primarySiteUrl) {
+    if (!primarySiteUrl || primarySiteUrl === '') {
         throw new Error('PRIMARY_SITE_URL is not set in .env')
     }
 
@@ -38,6 +38,19 @@ export default defineConfig(({ command, mode }) => {
             viteRestart({
                 reload: ['templates/**/*'],
             }),
+            // Custom plugin to override console URLs
+            {
+                name: 'ddev-console-urls',
+                configureServer(server) {
+                    const { printUrls } = server
+                    server.printUrls = () => {
+                        const { resolvedUrls } = server
+                        resolvedUrls.local.unshift(primarySiteUrl)
+
+                        printUrls()
+                    }
+                },
+            },
         ],
         resolve: {
             alias: {
