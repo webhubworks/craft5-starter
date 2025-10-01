@@ -57,9 +57,9 @@ ddev craft plugin/install craft-ray
 ddev craft plugin/install seo
 ddev craft plugin/install cp-field-inspect
 
-echo "Updating Craft & plugins..."
+#echo "Updating Craft & plugins..."
 
-ddev craft update all --interactive=0 --minor-only
+#ddev craft update all --interactive=0 --minor-only
 
 echo "Launching PhpStorm..."
 
