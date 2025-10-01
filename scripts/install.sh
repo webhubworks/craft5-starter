@@ -21,7 +21,7 @@ rm -f README.md.default
 
 if ! command -v op 2>&1 >/dev/null; then
   echo -e "${RED}1Password CLI is not installed, cannot create an account${NC}"
-  ddev craft install/craft --site-name="${SITE_NAME}" --site-url="$PRIMARY_SITE_URL"
+  ddev craft install/craft --site-name="${SITE_NAME}" --site-url="\$PRIMARY_SITE_URL"
 else
     echo "Fetching metadata, this can take a few seconds..."
 
@@ -46,7 +46,7 @@ else
     --username="${USER_EMAIL}" \
     --password="${PASSWORD}" \
     --site-name="${SITE_NAME}" \
-    --site-url="$PRIMARY_SITE_URL" \
+    --site-url="\$PRIMARY_SITE_URL" \
     --language="de"
 fi
 
