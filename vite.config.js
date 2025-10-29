@@ -25,6 +25,7 @@ export default defineConfig(({ command, mode }) => {
         build: {
             manifest: true,
             outDir: 'public/dist/',
+            copyPublicDir: false,
             rollupOptions: {
                 input: {
                     app: 'src/scripts/app.js',
