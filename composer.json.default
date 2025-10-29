@@ -13,7 +13,6 @@
   },
   "require-dev": {
     "craftcms/generator": "^2.0.0",
-    "mmikkel/cp-field-inspect": "^2.0.4",
     "nystudio107/craft-autocomplete": "^1.12.2",
     "putyourlightson/craft-elements-panel": "3.0.0",
     "spatie/craft-ray": "2.1.1",
