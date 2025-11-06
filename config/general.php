@@ -38,4 +38,5 @@ return GeneralConfig::create()
             'extensions' => ['svg'],
         ]
     ])
+    ->allowUpdates(App::env('CRAFT_ENVIRONMENT') === 'dev' ?? false)
 ;
