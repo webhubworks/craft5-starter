@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "pinia": "^3.0.3",
-    "vue": "^3.5.13"
+    "vue": "^3.5.26"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.6.0",
@@ -19,9 +19,9 @@
     "@zackad/prettier-plugin-twig": "^0.16.0",
     "prettier": "^3.6.2",
     "prettier-plugin-jsdoc": "^1.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.14",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.0.3",
     "vite": "^7.1.0",
-    "vite-plugin-restart": "^1.0.0"
+    "vite-plugin-restart": "^2.0.0"
   }
 }
