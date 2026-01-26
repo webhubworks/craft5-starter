@@ -16,7 +16,18 @@ BACKUP_UPLOADS_DIR="/home/forge/domain.de/web/uploads" # Path to the single uplo
 BACKUP_STORAGE_LOCATION="/home/forge/backups" # Path to top level backup storage location
 BACKUP_PASSWORD= # The zip password for the encrypted database backup
 BACKUP_RETENTION_DAYS="14" # How many days of backups should be retained
+
+# Optional: SFTP Upload
+# SFTP Backup Settings
+SFTP_HOST=""
+SFTP_PORT="22"
+SFTP_USER=""
+SFTP_PASSWORD=""
+SFTP_PATH="/backups/"
 ```
+
+## SFTP Upload
+If you want to upload the backuped files via SFTP, make sure to fill the above env variables and install the following package: `ddev composer require league/flysystem-sftp-v3`
 
 ## Setting up a Cron job
 
