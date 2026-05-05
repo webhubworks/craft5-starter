@@ -1,6 +1,6 @@
 # Craft 5 CMS Starter
 
-An opinionated starter template for Craft CMS 5 projects at Webhub.
+An opinionated starter template for Craft CMS 5 projects at webhub.
 
 ## Features
 
