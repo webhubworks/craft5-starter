@@ -44,6 +44,4 @@ Replace `<component>` with the desired component type (e.g., `model`, `controlle
 
 ## Configuring Backups
 
-Enable backups and configure variables through `.env`, then create a cronjob that executes `./scripts/backup.sh`.
-
-Read more about its usage [here](scripts/backup/README.md).
+Backups are handled by [`webhubworks/craft-backup`](https://github.com/webhubworks/craft-backup). Configure your targets in `config/backup.php`, set the relevant `BACKUP_*` variables in `.env`, then schedule `php craft backup/run` from cron.

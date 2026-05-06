@@ -93,6 +93,8 @@ ddev craft plugin/install elements-panel
 ddev craft plugin/install craft-ray
 ddev craft plugin/install seo
 ddev craft plugin/install _craft-panoptikum-cell
+ddev craft plugin/install backup
+ddev craft backup/publish-config
 
 #echo "Updating Craft & plugins..."
 
