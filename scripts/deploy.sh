@@ -18,7 +18,10 @@ if [[ -n ${FORGE_COMPOSER+set} ]]; then
   BRANCH="$FORGE_SITE_BRANCH"
 fi
 
-$PHP_BIN craft db/backup
+# Use this if you do not have webhubworks/craft-backup installed:
+# $PHP_BIN craft db/backup
+$PHP_BIN craft backup/run --only-db
+
 $PHP_BIN craft off
 
 git reset HEAD --hard
