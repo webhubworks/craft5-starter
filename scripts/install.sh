@@ -96,6 +96,34 @@ ddev craft plugin/install _craft-panoptikum-cell
 ddev craft plugin/install backup
 ddev craft backup/publish-config
 
+echo "Setting email configuration in project config..."
+
+if ! command -v yq &>/dev/null; then
+  brew install yq
+fi
+
+TMP_EMAIL=$(mktemp /tmp/craft_email_patch.XXXXXX.yaml)
+cat > "$TMP_EMAIL" <<'EOF'
+fromEmail: $FROM_EMAIL
+fromName: $FROM_NAME
+replyToEmail: $REPLY_TO_EMAIL
+template: null
+transportSettings:
+  host: $SMTP_HOSTNAME
+  password: $SMTP_PASSWORD
+  port: $SMTP_PORT
+  useAuthentication: $SMTP_USE_AUTHENTICATION
+  username: $SMTP_USERNAME
+transportType: craft\mail\transportadapters\Smtp
+EOF
+
+yq eval ".email = load(\"$TMP_EMAIL\")" -i config/project/project.yaml
+rm -f "$TMP_EMAIL"
+
+echo -e "${GREEN}✔ Set email configuration in project.yaml${NC}"
+
+ddev craft pc/apply
+
 #echo "Updating Craft & plugins..."
 
 #ddev craft update all --interactive=0 --minor-only
