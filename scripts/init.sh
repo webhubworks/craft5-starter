@@ -58,4 +58,8 @@ if [ -f ".env" ]; then
 fi
 
 echo -e "${GREEN}✔ Updated project name in composer.json, package.json, and .ddev/config.yaml.${NC}\n"
+
+# Seed the webhub Craft CMS AI guidelines (fails silently if offline)
+bash ./scripts/update-guidelines.sh
+
 echo -e "Run ${YELLOW}ddev start${NC} inside the project folder"

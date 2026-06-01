@@ -15,3 +15,6 @@ composer.lock
 
 node_modules
 vendor
+
+# Fetched at create-project time; committed in created projects, not here
+.ai
