@@ -1,28 +1,26 @@
 #!/bin/bash
+set -euo pipefail
 
 # Usage:
 #
 # ./deploy.sh <branch>
 
-PHP_BIN="php"
-COMPOSER_BIN="composer"
-BRANCH="main"
+PHP_BIN="${FORGE_PHP:-php}"
+COMPOSER_BIN="${FORGE_COMPOSER:-composer}"
+BRANCH="${FORGE_SITE_BRANCH:-main}"
 
-if [ -z "$1" ]; then
+if [ -n "${1:-}" ]; then
     BRANCH="$1"
 fi
 
-if [[ -n ${FORGE_COMPOSER+set} ]]; then
-  PHP_BIN="$FORGE_PHP"
-  COMPOSER_BIN="$FORGE_COMPOSER"
-  BRANCH="$FORGE_SITE_BRANCH"
-fi
+# Ensure craft on is called even if the script fails (safety: error trap)
+trap '$PHP_BIN craft on || true' ERR
+
+$PHP_BIN craft off
 
 # Use this if you do not have webhubworks/craft-backup installed:
 # $PHP_BIN craft db/backup
 $PHP_BIN craft backup/run --only-db
-
-$PHP_BIN craft off
 
 git reset HEAD --hard
 git pull origin "$BRANCH"
@@ -33,10 +31,13 @@ $PHP_BIN craft migrate/all --no-content --interactive=0 --no-backup
 $PHP_BIN craft project-config/apply
 $PHP_BIN craft migrate --track=content --interactive=0
 
-npm install
+npm ci
 npm run build
 
 $PHP_BIN craft on
+
+# Remove the ERR trap now that we are live — subsequent non-critical steps should not trigger maintenance mode
+trap - ERR
 
 if [[ -n ${FORGE_PHP_FPM+set} ]]; then
   touch /tmp/fpmlock 2>/dev/null || true
