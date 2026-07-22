@@ -39,5 +39,5 @@ return GeneralConfig::create()
         ]
     ])
     ->allowUpdates(App::env('CRAFT_ENVIRONMENT') === 'dev' ?? false)
-    ->partialTemplatesPath('_globals/element-partials')
+    ->partialTemplatesPath('_global/element-partials')
 ;
