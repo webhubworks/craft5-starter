@@ -1,0 +1,84 @@
+{# BASE LAYOUT - EMAIL
+   =========================================================================================================
+   A standalone HTML-email document. Unlike base-web, this does NOT extend envelopes/ -
+   email is always a full document rendered server-side to a string, so there's no webpage/ajax fork.
+   Keep this agnostic: no brand colors, logo, or copy. Sites specialize it in _site/_layouts/email.twig.
+#}
+<!DOCTYPE html>
+<html lang="{{ emailLang ?? currentSite.language ?? craft.app.language }}"
+      dir="{{ craft.app.locale.orientation }}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:v="urn:schemas-microsoft-com:vml"
+      xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    {% block headContent %}
+        {% block headMeta %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            {# Stop iOS Mail from auto-scaling the layout #}
+            <meta name="x-apple-disable-message-reformatting">
+            {# Opt into dark mode so clients render our palette instead of force-inverting it #}
+            <meta name="color-scheme" content="light dark">
+            <meta name="supported-color-schemes" content="light dark">
+            {# Stop clients auto-linking phone numbers / dates / addresses into blue text #}
+            <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+        {% endblock %}
+
+        <title>{% block title %}{% endblock %}</title>
+
+        {# Outlook uses Word's rendering engine - force real pixel sizing #}
+        {% block headOutlook %}
+            <!--[if mso]>
+            <noscript><xml><o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings></xml></noscript>
+            <![endif]-->
+        {% endblock %}
+
+        {# Email clients strip <link>, and inline styles can't do @media -
+           so resets + responsive rules live here. Brand styling is layered by the site. #}
+        {% block emailStyles %}
+            <style>
+                html, body { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+                * { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+                table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+                table { border-collapse: collapse; border-spacing: 0; }
+                img { border: 0; height: auto; line-height: 100%; outline: none;
+                      text-decoration: none; display: block; -ms-interpolation-mode: bicubic; }
+            </style>
+        {% endblock %}
+    {% endblock headContent %}
+</head>
+
+{% block bodyTag %}
+    <body style="margin:0; padding:0; width:100%; word-break:break-word; -webkit-font-smoothing:antialiased;">
+{% endblock %}
+
+    {% block bodyContent %}
+        {# Inbox preview text: hidden in the body, the spacer entities push the
+           client's own fallback preview out of view. #}
+        {% block preheader %}
+            <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+                {% block preheaderText %}{% endblock %}
+                &#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
+            </div>
+        {% endblock %}
+
+        {# Centered container - tables, because that's what every client supports #}
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center">
+                    <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"
+                           style="width:600px; max-width:600px;">
+                        <tr>
+                            <td>
+                                {% block content %}{% endblock %}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    {% endblock bodyContent %}
+</body>
+</html>

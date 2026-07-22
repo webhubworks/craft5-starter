@@ -1,0 +1,19 @@
+{### Extends #}
+{% extends '_site/_layouts/_base.twig' %}
+
+{### Permissions #}
+
+{### Macros #}
+
+{### Data logic #}
+
+{### Blocks #}
+{% block bodyHtml %}
+    {% include '_site/_layouts/partials/header.twig' ignore missing %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include '_site/_layouts/partials/footer.twig' ignore missing %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{# BASE LAYOUT - PDF / PRINT
+   =========================================================================================================
+   A standalone document for PDF generation (dompdf/mPDF) or a print stylesheet. Like base-email, it does
+   NOT extend envelopes/ - it's always a full document rendered server-side to a string, then handed to a
+   PDF engine. No JS, no vite, no interactivity; PDF engines support only a limited CSS subset (dompdf has
+   no flexbox/grid - use tables). Keep agnostic: sites specialize it in _site/_layouts/pdf.twig.
+#}
+<!DOCTYPE html>
+<html lang="{{ pdfLang ?? currentSite.language ?? craft.app.language }}" dir="{{ craft.app.locale.orientation }}">
+<head>
+    {% block headContent %}
+        {% block headMeta %}
+            <meta charset="utf-8">
+        {% endblock %}
+
+        <title>{% block title %}{% endblock %}</title>
+
+        {# Page geometry + print resets. Inline <style> only - PDF engines ignore external CSS. #}
+        {% block pdfStyles %}
+            <style>
+                @page { margin: 20mm; }
+                html, body { margin: 0; padding: 0; }
+                body {
+                    font-family: 'DejaVu Sans', Arial, sans-serif; /* dompdf bundles DejaVu - needed for unicode */
+                    font-size: 11pt;
+                    line-height: 1.4;
+                    color: #000;
+                }
+                table { border-collapse: collapse; width: 100%; }
+                /* Keep rows/images/headings from splitting across a page break */
+                tr, img { page-break-inside: avoid; }
+                h1, h2, h3 { page-break-after: avoid; }
+            </style>
+        {% endblock %}
+    {% endblock headContent %}
+</head>
+
+{% block bodyTag %}<body>{% endblock %}
+    {% block bodyContent %}
+        {# Running header/footer repeat on every page - dompdf renders position:fixed elements per-page;
+           mPDF uses @page header/footer. Page numbers are engine-specific, so wire them in the site layer. #}
+        {% block runningHeader %}{% endblock %}
+
+        {% block content %}{% endblock %}
+
+        {% block runningFooter %}{% endblock %}
+    {% endblock bodyContent %}
+</body>
+</html>

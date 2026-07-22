@@ -1,0 +1,20 @@
+{# BASE LAYOUT - FEED (RSS)
+   =========================================================================================================
+   A standalone RSS/XML document. Like base-email and base-pdf it does NOT extend envelopes/ - a feed is
+   always a full document with its own content-type. The <?xml?> declaration MUST be the first bytes out,
+   so mind whitespace (the {%- -%} trims exist for that reason). Keep agnostic: sites fill the channel meta
+   and items in _site/_layouts/feed.twig.
+#}
+{%- header "Content-Type: application/rss+xml; charset=utf-8" -%}
+{{- '<?xml version="1.0" encoding="utf-8"?>' }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{% block feedTitle %}{{ siteName }}{% endblock %}</title>
+        <link>{{ siteUrl }}</link>
+        <atom:link href="{{ craft.app.request.absoluteUrl }}" rel="self" type="application/rss+xml" />
+        <description>{% block feedDescription %}{% endblock %}</description>
+        <lastBuildDate>{{ now|date('r') }}</lastBuildDate>
+
+        {% block feedItems %}{% endblock %}
+    </channel>
+</rss>

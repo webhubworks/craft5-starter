@@ -1,0 +1,30 @@
+{### Extends #}
+{% extends '_boilerplate/base-layouts/webpage.twig' %}
+
+{### Permissions #}
+
+{### Macros #}
+
+{### Data logic #}
+
+{### Blocks #}
+{% block headMeta %}
+    {{ parent() }}
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111">
+    {% hook 'seo' %}
+{% endblock %}
+
+{% block headLinks %}
+    {{ parent() }}
+    {# <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Switzer-Variable.woff2"/> #}
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+{% endblock %}
+
+{% block headJsEnd %}
+    {{ parent() }}
+    {{ craft.vite.script('src/scripts/app.js', false) }}
+{% endblock %}

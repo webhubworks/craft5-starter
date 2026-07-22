@@ -1,0 +1,69 @@
+{# BASE LAYOUT - WEB
+   ===========================================================================================================
+   The base for all HTML web responses. Picks its envelope at runtime (envelopes/webpage vs envelopes/ajax)
+   so one template can render as a full document or a bare DOM fragment. Defines the <head>/<body> block
+   structure every web page extends.
+   Keep this agnostic: no brand, header/footer, mount point, or vite. Sites specialize it in _site/_layouts.
+#}
+{% extends craft.app.request.isAjax() and not craft.app.request.getIsPreview()
+    ? '_boilerplate/envelopes/ajax.twig'
+    : '_boilerplate/envelopes/webpage.twig'
+%}
+
+
+{# <HEAD> CONTENT
+=========================================================================================================== #}
+{% block headContent %}
+    {# Any <meta> tags that should be included in the <head> #}
+    {% block headMeta %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="strict-origin-when-cross-origin">
+        <meta name="color-scheme" content="light dark">
+        {% if not craft.app.config.general.devMode or craft.app.env != 'production' %}
+            <meta name="robots" content="noindex, nofollow">
+        {% endif %}
+    {% endblock %}
+
+    {# Any <link> tags that should be included in the <head> #}
+    {% block headLinks %}
+        <link rel="home" href="{{ siteUrl }}"/>
+
+        {# Tell the browser to start warming connections ahead of time for external resources #}
+        {% set resourceHintUrls = resourceHintUrls is array ? resourceHintUrls : [] %}
+        {% for url in resourceHintUrls %}
+            <link rel="preconnect" href="{{ url }}" crossorigin>
+        {% endfor %}
+    {% endblock %}
+
+    {# CSS #}
+    {% block headCss %}{% endblock %}
+
+    {# JavaScript that should load before </head> #}
+    {% block headJsEnd %}
+        {# Inline and polyfill JS #}
+        {% include '_boilerplate/partials/js-craft-csrf-token.twig' %}
+    {% endblock %}
+
+{% endblock headContent %}
+
+
+{# <BODY> TAG
+=========================================================================================================== #}
+{% block bodyTag %}
+    <body{{ attr({'data-dev-mode': craft.app.config.general.devMode}) }}>
+{% endblock %}
+
+
+{# <BODY> CONTENT
+=========================================================================================================== #}
+{% block bodyContent %}
+    {# JavaScript that should load after the <body> tag #}
+    {% block bodyJsStart %}{% endblock %}
+
+    {# All <body> page content ends up here #}
+    {% block bodyHtml %}{% endblock %}
+
+    {# JavaScript that appears right before the </body> tag #}
+    {% block bodyJsEnd %}{% endblock %}
+{% endblock bodyContent %}

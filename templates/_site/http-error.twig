@@ -1,0 +1,33 @@
+{### Extends #}
+{% extends '_site/_layouts/static.twig' %}
+
+{### Permissions #}
+
+{### Macros #}
+
+{### Data logic #}
+{% set statusCode = craft.app.response.statusCode %}
+{% switch statusCode %}
+{% case 404 %}
+    {% set header = 'Page not found'|t %}
+    {% set message = "We have a 404 here. There isn't a page for that URL."|t %}
+{% case 503 %}
+    {% set header = 'Service unavailable'|t %}
+    {% set message = "We have a 503 here. The site is unavailable at the moment."|t %}
+{% default %}
+    {% set header = "[#{statusCode}] " ~ 'Error'|t %}
+    {% set message = "An unexpected error ocurred."|t %}
+{% endswitch %}
+
+{# Ether SEO plugin #}
+{% set seo = craft.seo.custom(header, message) %}
+
+{### Blocks #}
+{% block content %}
+    <div class="container">
+        <div class="bg-green-300 p-8 text-green-800 text-center">
+            <h1>{{ header }}</h1>
+            <p>{{ message }}</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{# BASE LAYOUT - WEBPAGE REQUESTS #}
+{%- block htmlPage -%}
+    <!DOCTYPE html>
+    <!--
+    webhub.de
+    -->
+    {% block htmlTag %}
+        <html lang="{{ htmlLang ?? currentSite.language }}" dir="{{ craft.app.locale.orientation }}" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    {% endblock %}
+    {% block headTag %}<head>{% endblock %}
+        {# All <head> content ends up here #}
+        {% block headContent %}{% endblock %}
+    </head>
+
+    {% block bodyTag %}<body>{% endblock %}
+        {# All <body> page content ends up here #}
+        {% block bodyContent %}{% endblock %}
+    </body>
+    </html>
+{%- endblock -%}
