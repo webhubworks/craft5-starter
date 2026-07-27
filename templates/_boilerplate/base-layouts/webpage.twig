@@ -30,7 +30,7 @@
         <link rel="home" href="{{ siteUrl }}"/>
 
         {# Tell the browser to start warming connections ahead of time for external resources #}
-        {% set resourceHintUrls = resourceHintUrls is array ? resourceHintUrls : [] %}
+        {% set resourceHintUrls = resourceHintUrls is defined and resourceHintUrls is array ? resourceHintUrls : [] %}
         {% for url in resourceHintUrls %}
             <link rel="preconnect" href="{{ url }}" crossorigin>
         {% endfor %}
