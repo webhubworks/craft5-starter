@@ -37,7 +37,7 @@ If you need templates for a section, like "News", create a subdirectory:
   - `category.twig` _(a listing page that filters articles by a selected news category)_
   - `search-results.twig` _(a listing page that filters articles by a search query)_
 
-If there are UI components that are unique to this site, add `_site/_components/` or `_site/_partials/` with their respective files. Make sure your code could easily be moved to the `/templates/_globals/` directory in the event that other `_site/`-like directories could share them too. Ideally, you'd have _**no**_ components/macros inside your `_site/` directory (try to make your components reusable). But you're free to treat the `_site/` directory however you wish.
+If there are UI components that are unique to this site, add `_site/_components/` or `_site/_partials/` with their respective files. Make sure your code could easily be moved to the `/templates/_global/` directory in the event that other `_site/`-like directories could share them too. Ideally, you'd have _**no**_ components/macros inside your `_site/` directory (try to make your components reusable). But you're free to treat the `_site/` directory however you wish.
 
 ## Where's the site's header and footer?
 

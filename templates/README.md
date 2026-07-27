@@ -7,11 +7,13 @@ _**NOTE**: the template organization strategy presented in these files is a modi
 ---
 
 The `templates/` directory not only contains the Twig files your site uses to render Craft's content, it also represents the _**global**_ scope of all templates and sites. Nothing in the top level should be site-specific, but rather globally reusable files. Here's a quick rundown of what's here:
-- `_boilerplate/`: the directory that constructs the base HTML document itself, in which your content sits. Generally speaking, you'll rarely have to edit anything in here (if ever). Just make sure your layout files extend to one of its `base-layouts/`.
-- `_global/`: the directory that holds reusable components/macros, includes/partials, or anything that's shared from Craft site to Craft site.
-- `_site`: the directory for all files related to the website you're building. By default, this represents your primary Craft site.
-- `error.twig`: the file Craft uses when an HTTP error occurs (see below).
-- `index.twig`: the default template Craft serves up unless you tell it otherwise (see below).
+
+- `templates/`
+  - `_boilerplate/`: the directory that constructs the base HTML document itself, in which your content sits. Generally speaking, you'll rarely have to edit anything in here (if ever). Just make sure your layout files extend to one of its `base-layouts/`.
+  - `_global/`: the directory that holds reusable components/macros, includes/partials, or anything that's shared from Craft site to Craft site.
+  - `_site/`: the directory for all files related to the website you're building. By default, this represents your primary Craft site.
+  - `error.twig`: the file Craft uses when an HTTP error occurs (see below).
+  - `index.twig`: the default template Craft serves up unless you tell it otherwise (see below).
 
 ## error.twig
 
