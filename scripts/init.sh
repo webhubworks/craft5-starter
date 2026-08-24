@@ -6,7 +6,7 @@ RED='\033[1;31m'
 NC='\033[0m' # No Color
 
 # Require auth.json before composer install runs (via ddev post-start hook)
-echo -e "${YELLOW}⚠ Paste the auth.json file containing credentials for webhub.repo.repman.io into the project root.${NC}"
+echo -e "${YELLOW}⚠ Paste the auth.json file containing credentials for packages.webhub.de into the project root.${NC}"
 read -p "Press enter to continue once auth.json is in place..."
 
 if [ ! -f auth.json ]; then

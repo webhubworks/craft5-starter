@@ -47,7 +47,7 @@
     },
     {
       "type": "composer",
-      "url": "https://webhub.repo.repman.io"
+      "url": "https://packages.webhub.de"
     }
   ],
   "autoload": {
