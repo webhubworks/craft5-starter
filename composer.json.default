@@ -31,10 +31,6 @@
     }
   },
   "scripts": {
-    "guidelines": "bash ./scripts/update-guidelines.sh",
-    "post-autoload-dump": [
-      "@composer guidelines"
-    ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example.dev', '.env');\""
     ]

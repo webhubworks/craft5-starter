@@ -26,10 +26,6 @@
     }
   },
   "scripts": {
-    "guidelines": "bash ./scripts/update-guidelines.sh",
-    "post-autoload-dump": [
-      "@composer guidelines"
-    ],
     "post-create-project-cmd": [
       "bash ./scripts/init.sh"
     ]
